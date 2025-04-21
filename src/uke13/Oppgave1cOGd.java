@@ -2,7 +2,7 @@ package uke13;
 
 import java.util.Map;
 
-public class Oppgave1c {
+public class Oppgave1cOGd {
     public static void main(String[] args) {
         // Initierer tidligere oppgaver for å fylle inn equalsCalls
         Oppgave1a.main(null);
