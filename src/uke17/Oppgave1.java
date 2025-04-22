@@ -8,39 +8,38 @@ public class Oppgave1 {
         int[] original = {15, 8, 1, 9, 11, 5, 10, 12};
         int k = 3;
 
-        System.out.println("Insertion Sort (k minste):");
+        System.out.println("Insertion Sort (k antall minste):");
         int[] arr1 = Arrays.copyOf(original, original.length);
         kMinInsertionSort(arr1, k);
         System.out.println();
 
-        System.out.println("Selection Sort (k minste):");
+        System.out.println("Selection Sort (k antall minste):");
         int[] arr2 = Arrays.copyOf(original, original.length);
         kMinSelectionSort(arr2, k);
         System.out.println();
 
-        System.out.println("Heap-basert (k minste):");
+        System.out.println("Heap-basert (k antall minste):");
         int[] arr3 = Arrays.copyOf(original, original.length);
         kMinHeap(arr3, k);
         System.out.println();
     }
 
-    // 1. Insertion Sort (modifisert)
+    // 1. Insertion Sort (fikset)
     public static void kMinInsertionSort(int[] arr, int k) {
+        // Bygg en sortert liste med de k minste
         for (int i = 1; i < arr.length; i++) {
             int key = arr[i];
             int j = i - 1;
 
-            // Sett inn blant de k første hvis aktuelt
-            while (j >= 0 && j >= k - 1 && arr[j] > key) {
+            // Vanlig insertion sort
+            while (j >= 0 && arr[j] > key) {
                 arr[j + 1] = arr[j];
                 j--;
             }
-
-            if (j < k - 1) {
-                arr[j + 1] = key;
-            }
+            arr[j + 1] = key;
         }
 
+        // Skriv ut kun de k første (minste) verdiene
         for (int i = 0; i < k; i++) {
             System.out.print(arr[i] + " ");
         }
@@ -55,8 +54,6 @@ public class Oppgave1 {
                     minIndex = j;
                 }
             }
-
-            // Bytt med i
             int temp = arr[i];
             arr[i] = arr[minIndex];
             arr[minIndex] = temp;
@@ -67,7 +64,7 @@ public class Oppgave1 {
         }
     }
 
-    // 3. Heap-basert metode
+    // 3. Heap-basert metode (effektiv)
     public static void kMinHeap(int[] arr, int k) {
         PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Comparator.reverseOrder());
 
@@ -80,7 +77,6 @@ public class Oppgave1 {
             }
         }
 
-        // Kopier og sorter resultatet
         List<Integer> result = new ArrayList<>(maxHeap);
         Collections.sort(result);
 
